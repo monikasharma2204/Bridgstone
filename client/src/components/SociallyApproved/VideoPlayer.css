@@ -1,0 +1,278 @@
+.sa-player {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  z-index: 2;
+ 
+  pointer-events: none;
+}
+
+.sa-player__backdrop {
+  position: absolute;
+  inset: -10%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(0.45) saturate(1.2);
+  transform: scale(1.08);
+}
+
+.sa-player__video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  background: transparent;
+  outline: none;
+}
+
+/* ---- spinner ------------------------------------------------------------ */
+
+.sa-player__spinner {
+  position: absolute;
+  inset: 0;
+  /* Above the video. See the z-index note on __chrome below. */
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: rgb(0 0 0 / 0.22);
+}
+
+.sa-spinner {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 2.5px solid rgb(255 255 255 / 0.24);
+  border-top-color: #fff;
+  animation: sa-spin 0.7s linear infinite;
+}
+
+@keyframes sa-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+/* ---- error state -------------------------------------------------------- */
+
+.sa-player__error {
+  pointer-events: auto;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  gap: 0.5rem;
+  place-content: center;
+  justify-items: center;
+  padding: 1rem;
+  text-align: center;
+  color: rgb(255 255 255 / 0.78);
+  background: #14141a;
+}
+
+.sa-player__error p {
+  margin: 0;
+  font-size: 0.78rem;
+  max-width: 18ch;
+}
+
+/* ---- chrome ------------------------------------------------------------- */
+
+.sa-player__chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.sa-player__chrome > * {
+  pointer-events: auto;
+}
+
+.sa-player__surface {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+/* progress track */
+.sa-player__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 0.85rem;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.sa-player__track::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 3px;
+  background: rgb(255 255 255 / 0.3);
+}
+
+.sa-player__fill {
+  position: absolute;
+  inset-inline: 0;
+  height: 3px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.sa-player__track:hover::before,
+.sa-player__track:hover .sa-player__fill,
+.sa-player__track:focus-visible::before,
+.sa-player__track:focus-visible .sa-player__fill {
+  height: 5px;
+}
+
+/* mute */
+.sa-player__mute {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  background: rgb(0 0 0 / 0.34);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.18s ease;
+}
+
+.sa-player__mute:hover {
+  background: rgb(0 0 0 / 0.58);
+}
+
+/* centre play/pause */
+.sa-player__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #14141a;
+  background: rgb(255 255 255 / 0.94);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+  transition: opacity 0.18s ease, scale 0.18s ease;
+}
+
+.sa-player__play:hover {
+  scale: 1.07;
+}
+
+.sa-player__time {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.7rem;
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  color: rgb(255 255 255 / 0.85);
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.7);
+  pointer-events: none;
+}
+
+.sa-player--reel .sa-player__track {
+  top: 0;
+  height: 1.5rem;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.5), transparent);
+}
+
+.sa-player--reel .sa-player__track::before,
+.sa-player--reel .sa-player__fill {
+  top: 0.45rem;
+  height: 4px;
+  border-radius: 0;
+}
+
+.sa-player--reel .sa-player__track::before {
+  background: rgb(255 255 255 / 0.38);
+}
+
+.sa-player--reel .sa-player__track:hover::before,
+.sa-player--reel .sa-player__track:hover .sa-player__fill,
+.sa-player--reel .sa-player__track:focus-visible::before,
+.sa-player--reel .sa-player__track:focus-visible .sa-player__fill {
+  height: 6px;
+}
+
+.sa-player--reel .sa-player__mute {
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+.sa-player--reel .sa-player__play {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+.sa-player--reel.is-playing .sa-player__play {
+  opacity: 0;
+}
+
+.sa-player--reel:hover .sa-player__play,
+.sa-player--reel:focus-within .sa-player__play {
+  opacity: 1;
+}
+
+/* ---- card variant (the rail) ------------------------------------------- */
+
+.sa-player--card .sa-player__track {
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.sa-player--card .sa-player__mute {
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.85rem;
+  height: 1.85rem;
+  opacity: 0;
+}
+
+.sa-player--card .sa-player__play {
+  width: 2.9rem;
+  height: 2.9rem;
+  opacity: 0;
+}
+
+.sa-player--card.is-paused .sa-player__play,
+.sa-player--card:hover .sa-player__play,
+.sa-player--card:hover .sa-player__mute,
+.sa-player--card:hover .sa-player__track,
+.sa-player--card:focus-within .sa-player__play,
+.sa-player--card:focus-within .sa-player__mute,
+.sa-player--card:focus-within .sa-player__track {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .sa-player--card .sa-player__mute,
+  .sa-player--card .sa-player__track {
+    opacity: 1;
+  }
+}

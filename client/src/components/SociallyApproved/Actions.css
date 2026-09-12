@@ -1,0 +1,91 @@
+/**
+ * Shared styling for the like and share controls.
+ *
+ * One base class, `.sa-action`, plus two variants so the same component can sit
+ * in either surface without a second implementation:
+ *
+ *   .sa-action--rail   the viewer's vertical stack - big icon, count beneath,
+ *                      drawn over the footage, so it carries its own shadow.
+ *   .sa-action--chip   the pill used below the rail cards, on a light ground.
+ *
+ * `.is-liked` is the state class; the heart's fill and the `sa-pop` keyframe
+ * both hang off it, so an optimistic like animates the instant it is applied
+ * and reverts cleanly if the request is rolled back.
+ */
+.sa-action {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: scale 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.sa-action__count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sa-action:hover {
+  scale: 1.08;
+}
+
+/* ---- rail ----------------------------------------------------------- */
+
+.sa-action--rail {
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #fff;
+  filter: drop-shadow(0 2px 6px rgb(0 0 0 / 0.65));
+}
+
+.sa-action--rail .sa-action__count {
+  font-size: 0.75rem;
+}
+
+.sa-action--rail.is-liked {
+  color: var(--sa-accent);
+}
+
+/* ---- chip ----------------------------------------------------------- */
+
+.sa-action--chip {
+  flex-direction: row;
+  gap: 0.34rem;
+  padding: 0.34rem 0.62rem;
+  font-size: 0.75rem;
+  color: var(--sa-ink-dim);
+  background: var(--sa-page-soft);
+  border: 1px solid var(--sa-line);
+  border-radius: 999px;
+}
+
+.sa-action--chip:hover {
+  scale: 1;
+  color: var(--sa-ink);
+  background: #fff;
+  border-color: var(--sa-line-strong);
+}
+
+.sa-action--chip.is-liked {
+  color: var(--sa-accent);
+  background: var(--sa-accent-soft);
+  border-color: color-mix(in srgb, var(--sa-accent) 35%, transparent);
+}
+
+/* ---- shared like animation ------------------------------------------ */
+
+.sa-action--like.is-liked svg {
+  animation: sa-pop 0.3s ease;
+}
+
+@keyframes sa-pop {
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

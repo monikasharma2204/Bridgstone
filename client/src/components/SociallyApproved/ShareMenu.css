@@ -1,0 +1,55 @@
+.sa-share {
+  position: relative;
+}
+
+.sa-share__menu {
+  position: absolute;
+  z-index: 20;
+  display: grid;
+  min-width: 10.5rem;
+  padding: 0.3rem;
+  background: rgb(28 28 36 / 0.97);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 12px;
+  box-shadow: var(--sa-shadow-strong);
+  backdrop-filter: blur(14px);
+  animation: sa-menu-in 0.14s ease;
+}
+
+
+.sa-share--rail .sa-share__menu {
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+}
+
+.sa-share--chip .sa-share__menu {
+  left: 0;
+  bottom: calc(100% + 0.4rem);
+}
+
+@keyframes sa-menu-in {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+
+.sa-share__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.46rem 0.6rem;
+  font-size: 0.8125rem;
+  text-align: left;
+  color: #fff;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.sa-share__item:hover {
+  background: rgb(255 255 255 / 0.12);
+}

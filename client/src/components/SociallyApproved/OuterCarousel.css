@@ -1,0 +1,98 @@
+.sa-rail-wrap {
+  position: relative;
+}
+
+.sa-rail {
+  --sa-per-row: 1.6;
+  --sa-rail-gap: clamp(0.6rem, 1.2vw, 1rem);
+
+  display: flex;
+  gap: var(--sa-rail-gap);
+  margin: 0;
+  padding: 0.5rem var(--sa-gutter) 1.25rem;
+  list-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--sa-gutter);
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.sa-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.sa-rail.is-grabbing {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .sa-rail {
+    --sa-per-row: 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sa-rail {
+    --sa-per-row: 5;
+  }
+}
+
+.sa-rail__item {
+
+  flex: 0 0
+    calc(
+      (100% - (var(--sa-per-row) - 1) * var(--sa-rail-gap)) / var(--sa-per-row)
+    );
+  scroll-snap-align: start;
+}
+
+/* ---- arrows -------------------------------------------------------- */
+
+.sa-rail__arrow {
+  position: absolute;
+  top: calc(50% - 0.4rem);
+  translate: 0 -50%;
+  z-index: 5;
+  display: none;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  color: var(--sa-ink);
+  background: #fff;
+  border: 1px solid var(--sa-line);
+  border-radius: 50%;
+  box-shadow: 0 6px 22px rgb(15 15 25 / 0.16);
+  cursor: pointer;
+  transition: opacity 0.16s ease, scale 0.16s ease;
+}
+
+.sa-rail__arrow:hover:not(:disabled) {
+  scale: 1.07;
+}
+
+.sa-rail__arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sa-rail__arrow--prev {
+  left: calc(var(--sa-gutter) - 1.45rem);
+}
+
+.sa-rail__arrow--next {
+  right: calc(var(--sa-gutter) - 1.45rem);
+}
+
+/* Arrows are a pointer affordance; touch devices swipe instead. */
+@media (hover: hover) and (pointer: fine) {
+  .sa-rail__arrow {
+    display: grid;
+  }
+}

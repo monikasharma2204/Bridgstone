@@ -1,0 +1,99 @@
+.sa-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+
+  background: rgb(6 6 10 / 0.72);
+  animation: sa-fade-in 0.18s ease;
+}
+
+@keyframes sa-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.sa-modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: clamp(3.2rem, 7vh, 4.5rem) 0 0;
+  animation: sa-dialog-in 0.24s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes sa-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.sa-modal__close {
+  position: absolute;
+  top: clamp(0.8rem, 2.2vh, 1.6rem);
+  right: clamp(0.8rem, 2.2vw, 1.8rem);
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  color: #fff;
+  background: rgb(255 255 255 / 0.08);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, rotate 0.2s ease;
+}
+
+.sa-modal__close:hover {
+  background: rgb(255 255 255 / 0.2);
+  rotate: 90deg;
+}
+
+.sa-modal__footer {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.sa-modal__counter {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgb(255 255 255 / 0.9);
+}
+
+.sa-modal__hint {
+  margin: 0;
+  font-size: 0.6875rem;
+  color: rgb(255 255 255 / 0.5);
+}
+
+@media (max-width: 639px) {
+  .sa-modal__dialog {
+    padding-top: 0;
+  }
+
+  .sa-modal__footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding-bottom: 0.6rem;
+    pointer-events: none;
+  }
+
+  .sa-modal__hint {
+    display: none;
+  }
+}

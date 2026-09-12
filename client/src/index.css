@@ -1,0 +1,129 @@
+/* ------------------------------------------------------------------ *
+ * Design tokens + resets
+ * Light, product-page surface for the page; the viewer modal is dark.
+ * ------------------------------------------------------------------ */
+
+:root {
+  --sa-page: #ffffff;
+  --sa-page-soft: #f7f7f8;
+  --sa-ink: #16161a;
+  --sa-ink-dim: #6c6c78;
+  --sa-line: #e7e7ec;
+  --sa-line-strong: #d5d5dd;
+  --sa-accent: #ff2d55;
+  --sa-accent-soft: rgb(255 45 85 / 0.12);
+
+  /* Dark surface tokens, used by the modal and by anything drawn on video. */
+  --sa-bg: #0a0a0f;
+  --sa-surface: #17171f;
+  --sa-surface-2: #21212b;
+  --sa-on-video: #ffffff;
+
+  --sa-radius: 10px;
+  --sa-radius-lg: 16px;
+  --sa-shadow: 0 12px 40px rgb(15 15 25 / 0.14);
+  --sa-shadow-strong: 0 24px 60px rgb(0 0 0 / 0.45);
+  --sa-gutter: clamp(1rem, 5vw, 4.5rem);
+
+  color-scheme: light;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--sa-page);
+  color: var(--sa-ink);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sa-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sa-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Shared button ---------------------------------------------------- */
+
+.sa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sa-ink);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.sa-btn:hover {
+  filter: brightness(1.15);
+}
+
+.sa-btn:active {
+  transform: translateY(1px);
+}
+
+.sa-btn--ghost {
+  color: #fff;
+  background: rgb(255 255 255 / 0.14);
+  border-color: rgb(255 255 255 / 0.3);
+}
+
+.sa-btn--ghost:hover {
+  background: rgb(255 255 255 / 0.24);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,52 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- nav ---------------------------------------------------------- */
+
+.page__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem var(--sa-gutter);
+  border-bottom: 1px solid var(--sa-line);
+}
+
+.page__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page__brand-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--sa-accent);
+}
+
+.page__nav-note {
+  font-size: 0.75rem;
+  color: var(--sa-ink-dim);
+}
+
+/* ---- footer ------------------------------------------------------- */
+
+.page__footer {
+  margin-top: auto;
+  padding: 2.5rem var(--sa-gutter) 3rem;
+  border-top: 1px solid var(--sa-line);
+}
+
+.page__footer p {
+  margin: 0 auto;
+  max-width: 52ch;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--sa-ink-dim);
+}

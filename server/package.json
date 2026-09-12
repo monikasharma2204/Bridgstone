@@ -1,0 +1,34 @@
+{
+  "name": "socially-approved-carousel-server",
+  "version": "1.0.0",
+  "description": "REST API for the Socially Approved Video Carousel (Express + MongoDB)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/seed/seed.js",
+    "seed:fresh": "node src/seed/seed.js --fresh",
+    "seed:generate": "node src/seed/generateVideosJson.js",
+    "test:api": "node test/api.smoke.test.js",
+    "check:media": "node test/check-media.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "mongoose",
+    "video",
+    "carousel"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
