@@ -1,7 +1,7 @@
 import { getUserId } from "./identity";
 
-// const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
-const BASE_URL = "https://bridgstone.onrender.com/api";
+const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
+// const BASE_URL = "https://bridgstone.onrender.com/api";
 const TIMEOUT_MS = 12000;
 
 export class ApiError extends Error {

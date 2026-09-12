@@ -18,7 +18,7 @@ const env = {
   seedCount: toInt(process.env.SEED_COUNT, 36),
   clientOrigins: (
     process.env.CLIENT_ORIGIN ||
-    "https://bridgstone.vercel.app, http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173"
+    "https://bridgstone.vercel.app,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173"
   )
     .split(",")
     .map((origin) => origin.trim())
